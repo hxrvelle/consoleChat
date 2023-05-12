@@ -77,7 +77,8 @@ public class Server {
                                         user.getOut().writeUTF(jsonObject.toJSONString());
                                     }
                                 } else if (action.equals("sendFile")) {
-                                    DataInputStream in = new DataInputStream(socket.getInputStream());
+                                    DataInputStream in = user.getIn();
+                                    //DataInputStream in = new DataInputStream(socket.getInputStream());
                                     String fileName = jsonObject.get("fileName").toString();
                                     int fileSize = Integer.parseInt(jsonObject.get("fileSize").toString());
 
@@ -115,6 +116,7 @@ public class Server {
                             }
                         }catch (IOException e){
                             System.out.println("Клиент отключился");
+                            e.printStackTrace();
                             users.remove(user);
                             sendUserList(users);
                         }catch (SQLException | ParseException e){
