@@ -78,7 +78,6 @@ public class Server {
                                     }
                                 } else if (action.equals("sendFile")) {
                                     DataInputStream in = user.getIn();
-                                    //DataInputStream in = new DataInputStream(socket.getInputStream());
                                     String fileName = jsonObject.get("fileName").toString();
                                     int fileSize = Integer.parseInt(jsonObject.get("fileSize").toString());
 
